@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: testgrcsh-db
+    environment:
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_DB: "${POSTGRES_DB}"
+    ports:
+      - ${POSTGRES_PORT}:5432
+    volumes:
+      - ./_docker-data/postgres:/var/lib/postgresql/data
+    restart: on-failure
+    env_file:
+      - .env
